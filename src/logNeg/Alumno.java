@@ -7,9 +7,9 @@ public class Alumno {
 	private String nombreAlumno;
 	private String dniAlumno;
 	private ArrayList<Integer> cantidadClasesSolicitadas;
-	
+
 	public Alumno() {
-		
+
 	}
 
 	public Alumno(ArrayList<String> nombreClase, String nombreAlumno, String dniAlumno,
@@ -52,9 +52,5 @@ public class Alumno {
 	public void setCantidadClasesSolicitadas(ArrayList<Integer> cantidadClasesSolicitadas) {
 		this.cantidadClasesSolicitadas = cantidadClasesSolicitadas;
 	}
-	
-	
-	
-	
 
 }

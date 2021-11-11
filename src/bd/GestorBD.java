@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class GestorBD {
 	private Connection con;
@@ -28,9 +29,35 @@ public class GestorBD {
 	 * previamente.
 	 */
 	public void inicioBD() {
+		
 		try {
-
-		} catch (SQLException e) {
+			
+			
+			AlumnoBD.crearTablaAlumno(this.con);
+			
+			
+			ArrayList<String> clases=new ArrayList<String>();
+			clases.add("Economia");
+			clases.add("Fisica");
+			
+			ArrayList<String> clases2=new ArrayList<String>();
+			clases2.add("Matematicas");
+			clases2.add("Algebra");
+			
+			ArrayList<Integer> cantidadDeVezSolicitado = new ArrayList<Integer>();
+			cantidadDeVezSolicitado.add(1);
+			cantidadDeVezSolicitado.add(3);
+			
+			ArrayList<Integer> cantidadDeVezSolicitado2 = new ArrayList<Integer>();
+			cantidadDeVezSolicitado2.add(4);
+			cantidadDeVezSolicitado2.add(2);
+			
+			AlumnoBD.insertarAlumno(this.con, "73601035H", "Anton San Gil", clases, cantidadDeVezSolicitado);
+			AlumnoBD.insertarAlumno(this.con, "74601034H", "Victor Martinez", clases2, cantidadDeVezSolicitado2);
+			
+			this.desconectarBD();
+			
+		}catch(SQLException e) {
 			System.out.println("Error.");
 		}
 	}

@@ -19,6 +19,7 @@ public abstract class TrabajadorAcademia {
 	}
 
 	/**
+	 * Constructor de TrabajadorAcademia.
 	 * 
 	 * @param dniTrabajadorAcademia
 	 * @param emailTrabajadorAcademia

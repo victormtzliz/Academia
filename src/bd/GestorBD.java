@@ -6,6 +6,13 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * Gestor de la base de datos. Encontramos los metodos conectar, desconectar e
+ * inicio (entre otros).
+ * 
+ * @author Anton y Victor.
+ *
+ */
 public class GestorBD {
 	private Connection con;
 	private final String localizador = "jdbc:sqlite:";
@@ -25,41 +32,57 @@ public class GestorBD {
 	}
 
 	/**
-	 * Este metodo hace que se inicie la base de datos tras haberla conectado
-	 * previamente.
+	 * Este metodo inicia la BD con una serie de tablas y datos despues de
+	 * haberla conectado previamente.
+	 * 
+	 * @throws SQLException
+	 *             si ocurre algun problema con respecto a la base de datos
+	 *             lanzara la SQLException.
 	 */
-	public void inicioBD() {
-		
-		try {
-			
-			
-			AlumnoBD.crearTablaAlumno(this.con);
-			
-			
-			ArrayList<String> clases=new ArrayList<String>();
-			clases.add("Economia");
-			clases.add("Fisica");
-			
-			ArrayList<String> clases2=new ArrayList<String>();
-			clases2.add("Matematicas");
-			clases2.add("Algebra");
-			
-			ArrayList<Integer> cantidadDeVezSolicitado = new ArrayList<Integer>();
-			cantidadDeVezSolicitado.add(1);
-			cantidadDeVezSolicitado.add(3);
-			
-			ArrayList<Integer> cantidadDeVezSolicitado2 = new ArrayList<Integer>();
-			cantidadDeVezSolicitado2.add(4);
-			cantidadDeVezSolicitado2.add(2);
-			
-			AlumnoBD.insertarAlumno(this.con, "73601035H", "Anton San Gil", clases, cantidadDeVezSolicitado);
-			AlumnoBD.insertarAlumno(this.con, "74601034H", "Victor Martinez", clases2, cantidadDeVezSolicitado2);
-			
-			this.desconectarBD();
-			
-		}catch(SQLException e) {
-			System.out.println("Error.");
-		}
+	public void inicioBD() throws SQLException {
+
+		AlumnoBD.crearTablaAlumno(this.con);
+		AdministradorBD.crearTablaAdministrador(this.con);
+		FacturaBD.crearTablaFactura(this.con);
+
+		AdministradorBD.insertarAdministrador(this.con, "72601036H", "victormtzliz@opendeusto.es", "victor",
+				"victor123");
+		AdministradorBD.insertarAdministrador(this.con, "72601035H", "victormtzli@opendeusto.es", "vic", "victor12345");
+		AdministradorBD.insertarAdministrador(this.con, "72601034H", "antonsangil@opendeusto.es", "antonio",
+				"antonio123");
+		AdministradorBD.insertarAdministrador(this.con, "72601033H", "antonsangi@opendeusto.es", "anton", "anton123");
+
+		ArrayList<String> clases = new ArrayList<String>();
+		clases.add("Economia");
+		clases.add("Fisica");
+
+		ArrayList<String> clases2 = new ArrayList<String>();
+		clases2.add("Matematicas");
+		clases2.add("Algebra");
+
+		ArrayList<Integer> cantidadDeVezSolicitado = new ArrayList<Integer>();
+		cantidadDeVezSolicitado.add(1);
+		cantidadDeVezSolicitado.add(3);
+
+		ArrayList<Integer> cantidadDeVezSolicitado2 = new ArrayList<Integer>();
+		cantidadDeVezSolicitado2.add(4);
+		cantidadDeVezSolicitado2.add(2);
+
+		AlumnoBD.insertarAlumno(this.con, "73601035H", "Anton San Gil", clases, cantidadDeVezSolicitado);
+		AlumnoBD.insertarAlumno(this.con, "74601034H", "Victor Martinez", clases2, cantidadDeVezSolicitado2);
+
+		ArrayList<String> clases3 = new ArrayList<String>();
+		clases.add("Economia");
+		clases.add("Fisica");
+
+		ArrayList<String> clases4 = new ArrayList<String>();
+		clases2.add("Matematicas");
+		clases2.add("Algebra");
+
+		FacturaBD.facturaAlumno(this.con, 1, "12-11-2021", 34, clases3);
+		FacturaBD.facturaAlumno(this.con, 2, "13-11-2021", 36, clases4);
+
+		this.desconectarBD();
 	}
 
 	/**

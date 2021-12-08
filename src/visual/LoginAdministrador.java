@@ -2,10 +2,15 @@ package visual;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import logneg.Administrador;
+import logneg.Alumno;
+import logneg.Factura;
 
 /**
  * 
@@ -17,27 +22,20 @@ import javax.swing.border.EmptyBorder;
 public class LoginAdministrador extends JFrame {
 
 	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LoginAdministrador frame = new LoginAdministrador();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private ArrayList<Alumno> alumnosBD=new ArrayList<Alumno>();
+	private ArrayList<Administrador> administradoresBD=new ArrayList<Administrador>();
+	private ArrayList<Factura> facturasBD=new ArrayList<Factura>();
+	private Inicio padre;
 
 	/**
 	 * Create the frame.
 	 */
-	public LoginAdministrador() {
+	public LoginAdministrador(ArrayList<Alumno> alumnos, ArrayList<Factura> facturas, ArrayList<Administrador> administradores, Inicio padre) {
+		this.alumnosBD=alumnos;
+		this.administradoresBD=administradores;
+		this.facturasBD=facturas;
+		this.padre=padre;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

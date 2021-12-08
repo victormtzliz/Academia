@@ -8,15 +8,20 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import logneg.Administrador;
+
 /**
- * Contiene los metodos crearTablaAdministrador, insertarAdministrador y todosLosAdmins.
+ * Contiene los metodos crearTablaAdministrador, insertarAdministrador y
+ * todosLosAdmins.
+ * 
  * @author Anton y Victor
  *
  */
 public class AdministradorBD {
 	/**
-	 * Consiste en crear la tabla ADMINISTRADOR en la base de datos. 
-	 * @param con Con es la url para hacer conexion con la base de datos.
+	 * Consiste en crear la tabla ADMINISTRADOR en la base de datos.
+	 * 
+	 * @param con
+	 *            Con es la url para hacer conexion con la base de datos.
 	 */
 	public static void crearTablaAdministrador(Connection con) {
 		String sql = "CREATE TABLE IF NOT EXISTS ADMINISTRADOR (\n" + "    dniTrabajadorAcademia text PRIMARY KEY,\n"
@@ -28,9 +33,12 @@ public class AdministradorBD {
 			System.out.println(e.getMessage());
 		}
 	}
+
 	/**
 	 * Sirve para insertar un nuevo administrador en la base de datos.
-	 * @param con Con es la url para hacer conexion con la base de datos.
+	 * 
+	 * @param con
+	 *            Con es la url para hacer conexion con la base de datos.
 	 * @param dniTrabajadorAcademia
 	 * @param emailTrabajadorAcademia
 	 * @param nombreAdministrador
@@ -50,17 +58,24 @@ public class AdministradorBD {
 			System.out.println(e.getMessage());
 		}
 	}
+
 	/**
-	 * Gracias a este metodo obtenemos una lista con todos los administradores de la base de datos.
-	 * @param con Con es la url para hacer conexion con la base de datos.
-	 * @return tutsAdmins que es la lista de todos los administradores de la base de datos.
+	 * Gracias a este metodo obtenemos una lista con todos los administradores
+	 * de la base de datos.
+	 * 
+	 * @param con
+	 *            Con es la url para hacer conexion con la base de datos.
+	 * @return tutsAdmins que es la lista de todos los administradores de la
+	 *         base de datos.
 	 */
 	public static ArrayList<Administrador> todosLosAdmins(Connection con) {
 		String sql = "SELECT dniTrabajadorAcademia,emailTrabajadorAcademia,nombreAdministrador,contrasenyaAdministrador FROM ADMINISTRADOR";
-		ArrayList<Administrador> tutsAdmins=new ArrayList<Administrador>();
-		try(Statement stmt=con.createStatement(); ResultSet rset=stmt.executeQuery(sql)){
-			while(rset.next()){
-				Administrador admin=new Administrador(rset.getString("dniTrabajadorAcademia"),rset.getString("emailTrabajadorAcademia"),rset.getString("nombreAdministrador"),rset.getString("contrasenyaAdministrador"));
+		ArrayList<Administrador> tutsAdmins = new ArrayList<Administrador>();
+		try (Statement stmt = con.createStatement(); ResultSet rset = stmt.executeQuery(sql)) {
+			while (rset.next()) {
+				Administrador admin = new Administrador(rset.getString("dniTrabajadorAcademia"),
+						rset.getString("emailTrabajadorAcademia"), rset.getString("nombreAdministrador"),
+						rset.getString("contrasenyaAdministrador"));
 				tutsAdmins.add(admin);
 			}
 		} catch (SQLException e) {

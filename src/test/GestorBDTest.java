@@ -9,11 +9,12 @@ import org.junit.Test;
 import bd.GestorBD;
 
 public class GestorBDTest {
-	
+
 	GestorBD gestorBD;
-	
+
 	/**
 	 * Inicializamos con este metodo la clase que queremos testear
+	 * 
 	 * @throws Exception
 	 */
 
@@ -28,7 +29,7 @@ public class GestorBDTest {
 	public void tearDown() throws Exception {
 		gestorBD.desconectarBD();
 	}
-	
+
 	/**
 	 * Testea la clase GestorBD
 	 */

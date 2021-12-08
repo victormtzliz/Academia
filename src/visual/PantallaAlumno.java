@@ -2,10 +2,14 @@ package visual;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import logneg.Alumno;
+import logneg.ClaseAcademia;
 
 /**
  * 
@@ -14,29 +18,19 @@ import javax.swing.border.EmptyBorder;
  *
  */
 public class PantallaAlumno extends JFrame {
-
+	
 	private JPanel contentPane;
+	private ArrayList<ClaseAcademia> clases=null;
+	ArrayList<Alumno> alumnosBD=new ArrayList<Alumno>();
+	private Inicio padre;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PantallaAlumno frame = new PantallaAlumno();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
-	public PantallaAlumno() {
+	public PantallaAlumno(ArrayList<Alumno> alumnos,Inicio padre) {
+		this.alumnosBD=alumnos;
+		this.padre=padre;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

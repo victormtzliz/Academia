@@ -39,7 +39,10 @@ public class LoginAdministrador extends JFrame {
 	private JPasswordField passAdmin;
 
 	/**
-	 * Este frame contiene un TextField, un PasswordField y dos botones. Si el Login es correcto, le llevará a la siguiente pantalla del Administrador. Si cancela, se cerrara la pantalla.
+	 * Este frame contiene un TextField, un PasswordField y dos botones. Si el
+	 * Login es correcto, le llevará a la siguiente pantalla del Administrador.
+	 * Si cancela, se cerrara la pantalla.
+	 * 
 	 * @param alumnos
 	 * @param facturas
 	 * @param administradores

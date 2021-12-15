@@ -48,6 +48,13 @@ public class PantallaFacturaClases extends JFrame {
 	private static int cuentaMatematicas = 0;
 	private static int cuentaFisica = 0;
 
+	/**
+	 * Pantalla que muestra la factura de las clases que ha comprado el alumno.
+	 * 
+	 * @param precioTotal
+	 * @param clases
+	 * @param alumnosBD
+	 */
 	public PantallaFacturaClases(int precioTotal, ArrayList<ClaseAcademia> clases, ArrayList<Alumno> alumnosBD) {
 		this.alumnosBD = alumnosBD;
 		this.compra = clases;
@@ -158,40 +165,41 @@ public class PantallaFacturaClases extends JFrame {
 		JButton btnConfirmarPedido = new JButton("CONFIRMAR PEDIDO");
 		btnConfirmarPedido.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String dni=null;
-				String alumno=null;
-				dni=txtDni.getText();
-				alumno=nombreAlumno.getText();
-				dniAlumno=dni;
-				
-				if(dni!=null && alumno!=null){
+				String dni = null;
+				String alumno = null;
+				dni = txtDni.getText();
+				alumno = nombreAlumno.getText();
+				dniAlumno = dni;
+
+				if (dni != null && alumno != null) {
 					contarClases();
-					for(Alumno al : alumnosBD){
-						if(al.getDniAlumno().equals(dniAlumno)){
-							ArrayList<String> nombreClasesPrevio=al.getNombreClase();
-							ArrayList<Integer> cantidadClasesPrevio=al.getCantidadClasesSolicitadas();
-							GestorBD myBD1=new GestorBD("Academia.db");
+					for (Alumno al : alumnosBD) {
+						if (al.getDniAlumno().equals(dniAlumno)) {
+							ArrayList<String> nombreClasesPrevio = al.getNombreClase();
+							ArrayList<Integer> cantidadClasesPrevio = al.getCantidadClasesSolicitadas();
+							GestorBD myBD1 = new GestorBD("Academia.db");
 							myBD1.conectarBD();
 							bd.AlumnoBD.eliminarAlumno(myBD1.getCon(), dniAlumno);
 							myBD1.desconectarBD();
-							
+
 							juntarArray(nombreClasesPrevio, cantidadClasesPrevio);
 						}
 					}
-					
-					GestorBD myBD=new GestorBD("Academia.bd");
+
+					GestorBD myBD = new GestorBD("Academia.bd");
 					myBD.conectarBD();
 					bd.AlumnoBD.insertarAlumno(myBD.getCon(), dni, alumno, nombreClases, cantidadClases);
 					myBD.desconectarBD();
-					
-					GestorBD myBD2=new GestorBD("Academia.bd");
+
+					GestorBD myBD2 = new GestorBD("Academia.bd");
 					myBD2.conectarBD();
 					bd.FacturaBD.facturaAlumno(myBD2.getCon(), numero, fechaFac, precioTotal, nombreClases);
 					myBD2.desconectarBD();
-					
-					JOptionPane.showMessageDialog(PantallaFacturaClases.this, "Su pedido se ha procesado correctamente, muchas gracias!!");
+
+					JOptionPane.showMessageDialog(PantallaFacturaClases.this,
+							"Su pedido se ha procesado correctamente, muchas gracias!!");
 					PantallaFacturaClases.this.dispose();
-					
+
 				}
 			}
 		});

@@ -99,7 +99,9 @@ public class LoginAdministrador extends JFrame {
 				try {
 					boolean comprobado = comprobarLogin(adminUser, adminPass);
 					if (comprobado == true) {
-
+						PantallaAdministrador pantallaAdmin = new PantallaAdministrador(adminUser, adminPass, alumnosBD,
+								administradoresBD, facturasBD, padre);
+						pantallaAdmin.setVisible(true);
 						LoginAdministrador.this.dispose();
 					}
 				} catch (AdministradorNoEcontrado e1) {

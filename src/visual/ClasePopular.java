@@ -40,13 +40,8 @@ public class ClasePopular extends JFrame {
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		
-		JLabel lblPopular = new JLabel ("Curso mas solicitado");
-		lblPopular.setFont(new Font("Century Gothic", Font.BOLD, 16));
-		lblPopular.setBounds(114, 33, 350, 50);
-		contentPane.add(lblPopular);
+		contentPane.setLayout(null);
 		
 		JButton btn = new JButton("Volver");
 		btn.setFont(new Font("Century Gothic", Font.BOLD, 16));
@@ -57,7 +52,7 @@ public class ClasePopular extends JFrame {
 				papa.setVisible(true);
 			}
 		});
-		btn.setBounds(50, 350, 110, 30);
+		btn.setBounds(237, 197, 110, 30);
 		contentPane.add(btn);
 		
 		JButton btnSalir = new JButton("Salir");
@@ -66,13 +61,18 @@ public class ClasePopular extends JFrame {
 				ClasePopular.this.dispose();
 			}
 		});
-		btnSalir.setBounds(49, 354, 115, 29);
+		
+		JLabel lblPopular = new JLabel ("Curso mas solicitado");
+		lblPopular.setFont(new Font("Century Gothic", Font.BOLD, 16));
+		lblPopular.setBounds(114, 33, 350, 50);
+		contentPane.add(lblPopular);
+		btnSalir.setBounds(69, 199, 115, 29);
 		contentPane.add(btnSalir);
 		
 		JTextPane textPane = new JTextPane();
 		textPane.setBackground(SystemColor.menu);
 		textPane.setFont(new Font("Century Gothic", Font.BOLD, 16));
-		textPane.setBounds(90, 125, 420, 85);
+		textPane.setBounds(5, 5, 418, 234);
 		contentPane.add(textPane);
 		
 		LinkedList<String> clase = clasePopCalcular();

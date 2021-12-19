@@ -22,7 +22,6 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-
 /**
  * 
  * @author Anton y Victor para el proyecto de Programacion III. Esta pantalla
@@ -38,29 +37,16 @@ public class EnviarCorreo extends JFrame {
 	private JLabel lblEmisor;
 	private JLabel lblReceptor;
 	private JLabel lblCuerpo;
-	
 
-//	/**
-//	 * Launch the application.
-//	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					EnviarCorreo frame = new EnviarCorreo();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
-	
 	/**
 	 * Esta clase permitira al Admin enviar correos
-	 * @param padre es la clase anterior, en nuestro caso PantallaAdmin
-	 * @param usuario nombre del Admin
-	 * @param password su contrasena
+	 * 
+	 * @param padre
+	 *            es la clase anterior, en nuestro caso PantallaAdmin
+	 * @param usuario
+	 *            nombre del Admin
+	 * @param password
+	 *            su contrasena
 	 */
 
 	/**
@@ -75,7 +61,7 @@ public class EnviarCorreo extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JLabel lblEnviarCorreo = new JLabel("Enviar Email");
 		lblEnviarCorreo.setFont(new Font("Century Gothic", Font.BOLD, 33));
 		lblEnviarCorreo.setForeground(new Color(0, 0, 0));
@@ -95,20 +81,20 @@ public class EnviarCorreo extends JFrame {
 		txtCuerpoMensaje = new JTextField();
 		txtCuerpoMensaje.setBounds(132, 215, 290, 113);
 		txtCuerpoMensaje.setColumns(10);
-		
-		//Convertimos el scrollpane en txt para facilitar
-		
+
+		// Convertimos el scrollpane en txt para facilitar
+
 		JScrollPane scroll = new JScrollPane();
 		scroll.setColumnHeaderView(txtCuerpoMensaje);
 		scroll.setBounds(132, 215, 290, 113);
 		contentPane.add(scroll);
-				
+
 		JButton btnEnviar = new JButton("Send");
 		btnEnviar.setFont(new Font("Century Gothic", Font.BOLD, 17));
 		btnEnviar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-			// aCCION ENVIAR
+				// aCCION ENVIAR
 
 				String loEnvia = txtLoEnvia.getText();
 				String destino = txtDestino.getText();
@@ -119,16 +105,15 @@ public class EnviarCorreo extends JFrame {
 					JOptionPane.showMessageDialog(null, "No se puede enviar el correo si no rellenas todos los campos");
 
 				} else {
-							
-					if(EnviarCorreo.enviarEmail(usuario, password, destino, cuerpoMensaje)==true) {
-								
+
+					if (EnviarCorreo.enviarEmail(usuario, password, destino, cuerpoMensaje) == true) {
+
 						JOptionPane.showMessageDialog(null, "Email enviado con exito");
-								
-							padre.setVisible(true);
-							EnviarCorreo.this.dispose();
-								
-					}
-					else {
+
+						padre.setVisible(true);
+						EnviarCorreo.this.dispose();
+
+					} else {
 						JOptionPane.showMessageDialog(null, "No se ha podido enviar el email");
 					}
 
@@ -138,7 +123,7 @@ public class EnviarCorreo extends JFrame {
 		});
 		btnEnviar.setBounds(407, 366, 115, 29);
 		contentPane.add(btnEnviar);
-		
+
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.setFont(new Font("Century Gothic", Font.BOLD, 17));
 		btnCancelar.addActionListener(new ActionListener() {
@@ -150,23 +135,22 @@ public class EnviarCorreo extends JFrame {
 		});
 		btnCancelar.setBounds(42, 366, 115, 29);
 		contentPane.add(btnCancelar);
-		
+
 		lblEmisor = new JLabel("From: ");
 		lblEmisor.setFont(new Font("Century Gothic", Font.BOLD, 17));
 		lblEmisor.setBounds(27, 118, 91, 20);
 		contentPane.add(lblEmisor);
-		
+
 		lblReceptor = new JLabel("To: ");
 		lblReceptor.setFont(new Font("Century Gothic", Font.BOLD, 17));
 		lblReceptor.setBounds(27, 171, 105, 20);
 		contentPane.add(lblReceptor);
-		
+
 		lblCuerpo = new JLabel("Body: ");
 		lblCuerpo.setFont(new Font("Century Gothic", Font.BOLD, 17));
 		lblCuerpo.setBounds(27, 215, 90, 70);
 		contentPane.add(lblCuerpo);
 	}
-
 
 public static boolean enviarEmail(String usuario, String password, String destino, String cuerpoMensaje) {
 	

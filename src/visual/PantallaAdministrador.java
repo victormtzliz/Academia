@@ -92,10 +92,19 @@ public class PantallaAdministrador extends JFrame {
 					PantallaAdministrador.this.setVisible(false);
 
 				} else if (eleccion.equals("Clase mas solicitada")) {
-
-				} else if (eleccion.equals("Clase: cantidad de solicitudes por alumno")) {
+					ClasePopular clasePop = new ClasePopular(alumnos, PantallaAdministrador.this);
+					clasePop.setVisible(true);
+					PantallaAdministrador.this.setVisible(false);
 
 				} else if (eleccion.equals("Enviar email")) {
+					EnviarCorreo correo = new EnviarCorreo(PantallaAdministrador.this, usuario, password);
+					correo.setVisible(true);
+					PantallaAdministrador.this.setVisible(false);
+
+				} else if (eleccion.equals("Clase: cantidad de solicitudes por alumno")) {
+					AlumnoClasesSolicitadas acs = new AlumnoClasesSolicitadas(alumnos, PantallaAdministrador.this);
+					acs.setVisible(true);
+					PantallaAdministrador.this.setVisible(false);
 
 				}
 			}
